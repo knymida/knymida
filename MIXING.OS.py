@@ -36,7 +36,7 @@ def login_working():
     # allowed_response is a dictionary, in which values of the corresponding
     # keys are the referenced to the functions defined above.
     allowed_response = {'sum': add, 'sub': sub, 'div': div, 'mul': mul}
-    while initial_response in allowed_response:
+    if initial_response in allowed_response:
         try:
             n1 = int(input('Enter first number: '))
             n2 = int(input('Enter second number: '))
@@ -46,17 +46,24 @@ def login_working():
             print("Only integers allowed. ")
         else:
             print("\nThe answer is :", allowed_response[initial_response](n1, n2))
-            another_input = str(input("\nDo you want to perform another operation? "
-                                      "\nEnter 'yes' or 'no': ")).lower()
-            if another_input == "yes":
-                login_working()
-            elif another_input == "no":
-                print('\nA legend once said - "THAND AUR BEZZATI JITNI MEHSOOS KARO UTNI LAGTI HAI".'
-                      '\nThanks for operating MIXING.OS')
-                break
-            break
+
+            def another():
+                another_input = str(input("\nDo you want to perform another operation? "
+                                          "\nEnter 'yes' or 'no': ")).lower()
+                while another_input == 'yes' or another_input == 'no':
+                    if another_input == "yes":
+                        login_working()
+                    elif another_input == "no":
+                        print('\nA legend once said - "THAND AUR BEZZATI JITNI MEHSOOS KARO UTNI LAGTI HAI".'
+                              '\nThanks for operating MIXING.OS')
+                        break
+                    break
+                else:
+                    print("Invalid Input")
+                    return another()
+            another()
     else:
-        print("Sorry wrong input")
+        print("Invalid input")
         login_working()
 
 
