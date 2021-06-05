@@ -1,5 +1,7 @@
-# Password is a list. So that in the later development,
-# a feature to change the password can be introduced.
+# Password is a list. So that in the later development, a feature can be introduced.
+# That feature will be, entering a specific password(already in the 'password' list), will grant different level of access to the user.
+# Depending upong the password, the user will enter into a different system with enhanced or reduced functioanality.   
+
 password = ['0530']
 chances = 3
 user_input = str(input("Enter Password to login: "))
@@ -67,8 +69,10 @@ def login_working():
         login_working()
 
 
-while user_input != password[0]:
-    chances -= 1
+while user_input != password[0]:    #This while block is responsible for giving the user 3 chances to enter the correct password.
+                                    #With each incorrect attempt the chances reduces by 1.
+                                    #This block will not raise any exceptions for obvious reasons. 
+    chances -= 1                    
 
     if chances != 0:
         print(f'Wrong password, {chances} chances left!! ')
